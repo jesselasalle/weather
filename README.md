@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version: 3.4.8
+* Rails version: 8.1.2
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Configuration:
+    - Uses geocode.maps.co for geocoding API
+    - Uses visualcrossing.com for weather API
+    - Both require an api key but are free.
+        - Store the api key in rails application credentials as geocode_api_key and weather_api_key
