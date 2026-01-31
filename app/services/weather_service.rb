@@ -10,6 +10,5 @@ class WeatherService
 
         response = Faraday.get(request_url)
         result = JSON.parse(response.body)
-        debugger
     end
 end

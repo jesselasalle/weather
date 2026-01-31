@@ -1,10 +1,11 @@
 class WelcomeController < ApplicationController
   def index
-    # debugger
     @default_address = "100 Alfred Lerner Way, Cleveland, Ohio"
     @current_address = params[:address] || @default_address
 
     @weather = lookup_weather(@current_address)
+  rescue => e
+    flash.alert = e.message
   end
 
   private
@@ -12,6 +13,7 @@ class WelcomeController < ApplicationController
   def lookup_weather(address)
     geocode = geocode_address(address)
     geocode_cache_key = "#{geocode[:country_code]}/#{geocode[:post_code]}"
+    @cached_result = Rails.cache.exist?(geocode_cache_key)
     @weather = Rails.cache.fetch(geocode_cache_key, expires_in: 30.minutes) do
       WeatherService.call(geocode[:post_code])
     end

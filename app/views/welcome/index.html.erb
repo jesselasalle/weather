@@ -1,3 +1,5 @@
+<%= render "shared/flash" %>
+
 <h1>Weather</h1>
 
 <%= form_with(method: 'get', local: true) do %>
@@ -7,13 +9,13 @@
 <% end %>
 
 <% if defined?(@weather) %>
+    <h3>Current Conditions:</h3>
     <ul>
-        <li>Temperature: <%= @weather.temperature %> ℃</li>
-        <li>Temperature Minimum: <%= @weather.temperature_min %> ℃</li>
-        <li>Temperature Maximum: <%= @weather.temperature_max %> ℃</li>
-        <li>Humidity: <%= @weather.humidity %>%</li>
-        <li>Pressure: <%= @weather.pressure %> millibars</li>
-        <li>Description: <%= @weather.description %></li>
-        <li>Is this result from the cache? <%= @weather_cache_exist %>
+        <li>Temperature: <%= @weather['currentConditions']['temp'].to_i %>F</li>
+        <li>Feels Like: <%= @weather['currentConditions']['feelslike'].to_i %>F</li>
+        <li>Chance of Precipitation: <%= @weather['currentConditions']['precipprob'] %></li>
+        <li>From cache: <%= @cached_result %></li>
     </ul>
+    <hr>
+
 <% end %>
