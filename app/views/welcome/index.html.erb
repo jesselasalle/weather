@@ -17,5 +17,20 @@
         <li>From cache: <%= @cached_result %></li>
     </ul>
     <hr>
+    <h3>Forecast</h3>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>High</th>
+            <th>Low</th>
+        </tr>
+            <% @weather['days'].each do |day| %>
+                <tr>
+                <td><%= day['datetime'] %></td>
+                <td><%= day['tempmax'].to_i %></td>
+                <td><%= day['tempmin'].to_i %></td>
+                </tr>
+            <% end %>
+    </table>
 
 <% end %>

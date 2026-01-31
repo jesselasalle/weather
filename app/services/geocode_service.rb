@@ -9,7 +9,7 @@ class GeocodeService
 
         response = Faraday.get(request_url)
         data = JSON.parse(response.body).first
-        data or raise IOError.new "Geocoder data error"
+        data or raise IOError.new "Address not found."
         return {
             country_code: data['address']['country_code'],
             post_code: data['address']['postcode']
